@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Model;
 
 use Nette;
@@ -30,7 +28,7 @@ class EmployeeModel
 			->order('id ASC')->fetchAll();
 	}
 
-	public function getPaginatedEmployees(int $limit = 10, int $page = 1)
+	public function getPaginatedEmployees($limit = 10, $page = 1)
 	{
 		$rows = $this->database->table('employees')
 			->order('id ASC')
@@ -40,14 +38,14 @@ class EmployeeModel
 		return $rows;
 	}
 
-	public function getEmployeeById(int $id)
+	public function getEmployeeById($id)
 	{
 		return $this->database->table('employees')
 			->where('id', $id)
 			->fetch();
 	}
 
-	public function updateEmployee(int $id, $data)
+	public function updateEmployee($id, $data)
 	{
 		$this->database->table('employees')
 			->where('id', $id)
@@ -60,7 +58,7 @@ class EmployeeModel
 			->insert($data);
 	}
 
-	public function deleteEmployee(int $id)
+	public function deleteEmployee($id)
 	{
 		$this->database->table('employees')
 			->where('id', $id)
