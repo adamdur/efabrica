@@ -17,6 +17,36 @@
 			</div>
 		</div>
 		<table class="table">
+			<tbody>
+			{if (count($rows) > 0)}
+				{foreach $rows as $row}
+					<tr>
+						{foreach $columns as $key=>$column}
+							<td class="tbody-column {$key}">
+								{if $key == 'id'}
+									<a href="{plink detail, $row->$key}">
+										{$row->$key}
+									</a>
+								{else}
+									{$row->$key}
+								{/if}
+							</td>
+						{/foreach}
+						<td class="tbody-column actions">
+							<a href="{plink detail, $row->id}">Edit</a>
+							<a href="{plink delete, $row->id}">Delete</a>
+						</td>
+					</tr>
+				{/foreach}
+			{else}
+				<tr>
+					<td colspan="{($columns|length) + 1}"
+						class="tbody-column">
+						There are no records in database. Start by <a href="{plink create}">creating new employee</a> or <a href="{plink import}">importing from XML file</a>.
+					</td>
+				</tr>
+			{/if}
+			</tbody>
 			<thead>
 				<tr>
 					{foreach $columns as $key=>$column}
@@ -29,27 +59,6 @@
 					</th>
 				</tr>
 			</thead>
-			<tbody>
-			{foreach $rows as $row}
-				<tr>
-					{foreach $columns as $key=>$column}
-						<td class="tbody-column {$key}">
-							{if $key == 'id'}
-								<a href="{plink detail, $row->$key}">
-									{$row->$key}
-								</a>
-							{else}
-								{$row->$key}
-							{/if}
-						</td>
-					{/foreach}
-					<td class="tbody-column actions">
-						<a href="{plink detail, $row->id}">Edit</a>
-						<a href="{plink delete, $row->id}">Delete</a>
-					</td>
-				</tr>
-			{/foreach}
-			</tbody>
 			<tfoot>
 				<tr>
 					<td colspan="{($columns|length) + 1}"

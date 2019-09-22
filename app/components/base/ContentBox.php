@@ -11,12 +11,6 @@ class ContentBox extends Control
 		parent::__construct();
 	}
 
-//	@TODO ?
-//	public function attached($presenter)
-//	{
-//		parent::attached($presenter);
-//	}
-
 	/**
 	 * @param  mixed
 	 * @param  IComponent

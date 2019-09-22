@@ -91,19 +91,17 @@ class BasicControl extends Control
 
 		$root = realpath(dirname(__FILE__) . '/../../../');
 		$filePath = $root . '/temp/files/';
+
+		if (!is_dir($filePath)) {
+			mkdir($filePath, 0777, true);
+		}
+
 		$file = $filePath . $fileName;
 
 		file_put_contents($file, $dom->saveXML());
 
 		return $file;
 	}
-
-//	@TODO ?
-//	public function createTemplate($class = NULL)
-//	{
-//		$template = parent::createTemplate($class);
-//		return $template;
-//	}
 
 	/**
 	 * @throws \Exception
