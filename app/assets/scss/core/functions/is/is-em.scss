@@ -1,0 +1,3 @@
+@function is-em($value) {
+    @return is-number($value) and unit($value) == em;
+}

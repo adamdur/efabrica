@@ -1,0 +1,21 @@
+/*
+ * Converts input value to a string.
+ */
+@function string($value, $separator: ' ', $is-nested: false) {
+	@if is($value, list) {
+		$result: '';
+		@for $i from 1 through length($value) {
+			$e: inspect(nth($value, $i));
+			@if type-of($e) == list {
+				//$result: $result#{to-string($e, $separator, true)};
+				$result: unquote("#{$result}#{to-string($e, $separator, true)}");
+			} @else {
+				//$result: if($i != length($value) or $is-nested, $result#{$e}#{$separator}, $result#{$e});
+				$result: if($i != length($value) or $is-nested, unquote("#{$result}#{$e}#{$separator}"), unquote("#{$result}#{$e}"));
+			}
+		}
+		@return $result;
+	} @else {
+		@return if(type-of($value) != string, unquote($value+''), $value);
+	}
+}

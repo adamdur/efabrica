@@ -1,0 +1,26 @@
+<div class="content-box">
+	<h3 class="content-box-title">
+		Import employees from XML file
+	</h3>
+	<div class="form-wrapper">
+		<div n:foreach="$flashes as $flash" n:class="flash-message, $flash->type">
+			{$flash->message}
+		</div>
+		{form importForm class=>"form"}
+			<div class="errors" n:if="$form->errors">
+				<div class="error" n:foreach="$form->errors as $error">{$error}</div>
+			</div>
+			<div class="field-wrapper">
+				{label file /}
+				{input file class=>"control"}
+			</div>
+			<div class="form-buttons">
+				{input import class=>"btn main-action"}
+				&nbsp;or&nbsp;
+				<a href="{plink default}"
+				   class="btn secondary-action">
+					Back
+				</a>
+			</div>
+		{/form}
+	</div>

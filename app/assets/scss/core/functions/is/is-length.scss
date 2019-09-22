@@ -1,0 +1,3 @@
+@function is-length($value, $length) {
+    @return length($value) == $length;
+}

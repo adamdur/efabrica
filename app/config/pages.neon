@@ -1,0 +1,13 @@
+services:
+	#basic control
+	- IContentBox
+
+	#homepage
+	homepageDefaultControlFactory: IHomepageDefaultControl
+
+	#employees
+	employeesListControlFactory: IEmployeesListControl
+	employeesDetailControlFactory: IEmployeesDetailControl
+	employeesCreateControlFactory: IEmployeesCreateControl
+	employeesDeleteControlFactory: IEmployeesDeleteControl
+	employeesImportControlFactory: IEmployeesImportControl

@@ -1,0 +1,20 @@
+/*
+ * Converts px or rem to em
+ */
+@function em($size, $context: get(base font-size)) {
+	@if type-of($size) == number {
+		@if $size == 0 {
+			@return 0;
+		}
+		@if unit($size) == px {
+			@return strip-unit(rem($size) / rem($context)) * 1em;
+		} @else if unit($size) == rem {
+			@return strip-unit($size) * 1em;
+		} @else if unit($size) == em {
+			@return $size;
+		} @else {
+			@error "Invalid unit in value '#{$size}'";
+		}
+	}
+	@error "Invalid value '#{$size}'";
+}

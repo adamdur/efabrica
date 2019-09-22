@@ -1,0 +1,60 @@
+@mixin bp($queries...) {
+    @if is($queries, empty) {
+        $queries: 0;
+    }
+    @each $query in $queries {
+        @if $query == 0 {
+            $queries: remove-nth($queries, index($queries, $query));
+        }
+    }
+    @if is($queries, length, 0) {
+        @content;
+    } @else {
+        $media: ();
+        @each $query in $queries {
+            $m: ();
+            @each $q in $query {
+                $index: index($query, $q);
+                @if get(breakpoint $q) {
+                    $q: get(breakpoint $q);
+                }
+                @if $q == portrait or $q == landscape {
+                    $m: append($m, (orientation: $q), space);
+                    $query: remove-nth($query, $index);
+                }
+                @if $q == retina {
+                    $m: append($m, (min-resolution: 144dpi), space);
+                    $query: remove-nth($query, $index);
+                }
+            }
+            @if is($query, length, 1) {
+                $query: first($query);
+                @if is-number($query) {
+                    $m: append($m, (min-width: em(get(breakpoint $query), 16px)), space);
+                } @else {
+                    @error "Invalid breakpoint value '#{ $query }'.";
+                }
+            } @else if is($query, length, 2) {
+                $first: first($query);
+                $last: last($query);
+                @if is-number($first) and is-number($last) {
+                    $min: em(get(breakpoint $first), 16px);
+                    $max: em(get(breakpoint $last) - 1, 16px);
+                    @if $min > 0 {
+                        $m: append($m, (min-width: $min), space);
+                        $m: append($m, (max-width: $max), space);
+                    } @else {
+                        $m: append($m, (max-width: $max), space);
+                    }
+                }
+            } @else if length($query) > 2 {
+                @error "Invalid number of breakpoints";
+            }
+            $m: string($m, ' and ');
+            $media: append($media, $m, comma);
+        }
+        @media #{$media} {
+            @content;
+        }
+    }
+}

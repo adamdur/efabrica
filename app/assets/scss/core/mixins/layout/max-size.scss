@@ -1,0 +1,4 @@
+@mixin max-size($value, $important: null) {
+    @include max-width(first($value), $important);
+    @include max-height(last($value), $important);
+}

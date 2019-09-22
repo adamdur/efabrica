@@ -1,0 +1,16 @@
+/*
+ * Get values from deeper levels of a map
+ *
+ * 1. Return false instead of causing error when the map doesn't exist
+ */
+@function map-fetch($map, $keys) {
+	@each $key in $keys {
+		@if type-of($map) == map {
+			$map: map-get($map, $key);
+		}
+		@else { /* 1 */
+			@return false;
+		}
+	}
+	@return $map;
+}

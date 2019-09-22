@@ -1,0 +1,65 @@
+//* pass _ to ommit sides
+
+@mixin spacing($property, $raw-value: 0, $important: null) {
+    $value: ();
+    $shortnotation: true;
+    @each $val in list($raw-value) {
+        @if is-_($val) {
+            $shortnotation: false;
+        }
+        @if is-unitless($val) {
+            $val: r($val);
+        }
+        @if is-px($val) and $val >= get(px-to-rem-limit) {
+            $val: rem($val);
+        }
+        $value: append($value, $val);
+    }
+    @if $shortnotation {
+        #{$property}: inspect($value) $important;
+    } @else {
+        @if length($value) == 2 {
+            $y: nth($value, 1);
+            $x: nth($value, 2);
+            @if not is-_($y) {
+                #{$property+'-top'}: $y $important;
+                #{$property+'-bottom'}: $y $important;
+            }
+            @if not is-_($x) {
+                #{$property+'-right'}: $x $important;
+                #{$property+'-left'}: $x $important;
+            }
+        } @else if length($value) == 3 {
+            $t: nth($value, 1);
+            $x: nth($value, 2);
+            $b: nth($value, 3);
+            @if not is-_($t) {
+                #{$property+'-top'}: $t $important;
+            }
+            @if not is-_($x) {
+                #{$property+'-right'}: $x $important;
+                #{$property+'-left'}: $x $important;
+            }
+            @if not is-_($b) {
+                #{$property+'-bottom'}: $b $important;
+            }
+        } @else if length($value) == 4 {
+            $t: nth($value, 1);
+            $r: nth($value, 2);
+            $b: nth($value, 3);
+            $l: nth($value, 4);
+            @if not is-_($t) {
+                #{$property+'-top'}: $t $important;
+            }
+            @if not is-_($r) {
+                #{$property+'-right'}: $r $important;
+            }
+            @if not is-_($b) {
+                #{$property+'-bottom'}: $b $important;
+            }
+            @if not is-_($l) {
+                #{$property+'-left'}: $l $important;
+            }
+        }
+    }
+}

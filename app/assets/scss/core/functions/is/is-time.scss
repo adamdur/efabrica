@@ -1,0 +1,3 @@
+@function is-time($value) {
+	@return is-number($value) and index('ms' 's', unit($value)) != null;
+}

@@ -1,0 +1,3 @@
+@function is-separator($value, $separator) {
+    @return list-separator($value) == $separator;
+}

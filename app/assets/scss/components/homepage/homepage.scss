@@ -1,0 +1,13 @@
+.page-home {
+	main.content-wrapper {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: rem(30px);
+		.content-box {
+			.canvas-wrapper {
+				@include max-size(800px 500px);
+				margin: 0 auto;;
+			}
+		}
+	}
+}

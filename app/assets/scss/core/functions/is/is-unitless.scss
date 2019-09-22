@@ -1,0 +1,3 @@
+@function is-unitless($value) {
+	@return is-number($value) and unitless($value);
+}

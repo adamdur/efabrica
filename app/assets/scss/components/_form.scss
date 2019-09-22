@@ -1,0 +1,76 @@
+.flash-message {
+	@include margin(_ _ 20px);
+	@include padding(20px 10px);
+	border-radius: rem(6px);
+	color: color(white);
+
+	&.success {
+		background-color: color(success);
+	}
+}
+.form-wrapper {
+	.form {
+		.errors {
+			.error {
+				@include margin(_ _ 20px);
+				@include padding(20px 10px);
+				background-color: color(error);
+				border-radius: rem(6px);
+				color: color(white);
+			}
+		}
+		.info {
+			@include margin(_ _ 20px);
+		}
+		.field-wrapper {
+			@include margin(_ _ 20px);
+			label {
+				@include margin(_ _ 6px);
+				color: color(grey-text);
+				display: block;
+				text-transform: uppercase;
+				font-weight: bold;
+				font-size: 12px;
+			}
+			input,
+			select,
+			textarea {
+				@include max-size(600px _);
+				@include padding(10px 10px);
+				@include size(100% _);
+				border: 1px solid darken(color(border), 10%);
+				border-radius: rem(4px);
+				color: color(black .7);
+				display: block;
+				font-size: 1rem;
+			}
+			select {
+				display: block;
+			}
+		}
+		.form-buttons {
+			color: color(grey-text);
+			.btn {
+				display: inline-block;
+				cursor: pointer;
+				&.main-action {
+					@include margin(_ 10px _ _);
+					@include padding(10px 15px);
+					background-color: color(primary);
+					border: none;
+					border-radius: rem(4px);
+					color: color(white);
+					font-weight: bold;
+					font-size: rem(14px);
+					text-transform: uppercase;
+					&.delete {
+						background-color: color(error);
+					}
+				}
+				&.secondary-action {
+					color: color(black .7);
+				}
+			}
+		}
+	}
+}

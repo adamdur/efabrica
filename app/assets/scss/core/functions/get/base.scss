@@ -1,0 +1,179 @@
+/*
+ * Returns base font-size and line-height in rem from variables.
+ */
+@function base-font-size($unit) {
+	$base: get(base font-size);
+	@if type-of($base) == number {
+		@if unitless($base) {
+			@if $unit == rem {
+				@return $base * 1rem;
+			}
+			@if $unit == em {
+				@return $base * 1em;
+			}
+			@if $unit == px {
+				@return $base * 16px;
+			}
+			@if $unit == '%' {
+				@return $base * 100%;
+			}
+		}
+		@if unit($base) == rem {
+			@if $unit == rem {
+				@return $base;
+			}
+			@if $unit == em {
+				@return strip-unit($base) * 1em;
+			}
+			@if $unit == px {
+				@return strip-unit($base) * 16px;
+			}
+			@if $unit == '%' {
+				@return strip-unit($base) * 100%;
+			}
+		}
+		@if unit($base) == em {
+			@if $unit == rem {
+				@return strip-unit($base) * 1rem;
+			}
+			@if $unit == em {
+				@return $base;
+			}
+			@if $unit == px {
+				@return strip-unit($base) * 16px;
+			}
+			@if $unit == '%' {
+				@return strip-unit($base) * 100%;
+			}
+		}
+		@if unit($base) == px {
+			@if $unit == rem {
+				@return (strip-unit($base) / 16) * 1rem;
+			}
+			@if $unit == em {
+				@return (strip-unit($base) / 16) * 1em;
+			}
+			@if $unit == px {
+				@return $base;
+			}
+			@if $unit == '%' {
+				@return (strip-unit($base) / 16) * 100%;
+			}
+		}
+		@if unit($base) == '%' {
+			@if $unit == rem {
+				@return (strip-unit($base) / 100) * 1rem;
+			}
+			@if $unit == em {
+				@return (strip-unit($base) / 100) * 1em;
+			}
+			@if $unit == px {
+				@return (strip-unit($base) / 100 * 16) * 1px;
+			}
+			@if $unit == '%' {
+				@return $base;
+			}
+		}
+	}
+	@error "Base font-size has to be a number.";
+}
+@function base-line-height($unit) {
+	$base: get(base line-height);
+	@if type-of($base) == number {
+		@if unitless($base) {
+			@if $unit == rem {
+				@return $base * 1rem;
+			}
+			@if $unit == em {
+				@return $base * 1em;
+			}
+			@if $unit == px {
+				@return $base * base-font-size(px);
+			}
+			@if $unit == '%' {
+				@return $base * 100%;
+			}
+			@if $unit == unitless {
+				@return $base;
+			}
+		}
+		@if unit($base) == rem {
+			@if $unit == rem {
+				@return $base;
+			}
+			@if $unit == em {
+				@return strip-unit($base) * 1em;
+			}
+			@if $unit == px {
+				@return strip-unit($base) * base-font-size(px);
+			}
+			@if $unit == '%' {
+				@return strip-unit($base) * base-font-size('%');
+			}
+			@if $unit == unitless {
+				@return strip-unit($base);
+			}
+		}
+		@if unit($base) == em {
+			@if $unit == rem {
+				@return strip-unit($base) * 1rem;
+			}
+			@if $unit == em {
+				@return $base;
+			}
+			@if $unit == px {
+				@return strip-unit($base) * base-font-size(px);
+			}
+			@if $unit == '%' {
+				@return strip-unit($base) * base-font-size('%');
+			}
+			@if $unit == unitless {
+				@return strip-unit($base);
+			}
+		}
+		@if unit($base) == px {
+			@if $unit == rem {
+				@return (strip-unit($base) / strip-unit(base-font-size(px))) * 1rem;
+			}
+			@if $unit == em {
+				@return (strip-unit($base) / strip-unit(base-font-size(px))) * 1em;
+			}
+			@if $unit == px {
+				@return $base;
+			}
+			@if $unit == '%' {
+				@return (strip-unit($base) / strip-unit(base-font-size(px))) * 100%;
+			}
+			@if $unit == unitless {
+				@return strip-unit($base) / strip-unit(base-font-size(px));
+			}
+		}
+		@if unit($base) == '%' {
+			@if $unit == rem {
+				@return (strip-unit($base) / strip-unit(base-font-size('%'))) * 1rem;
+			}
+			@if $unit == em {
+				@return (strip-unit($base) / strip-unit(base-font-size('%'))) * 1em;
+			}
+			@if $unit == px {
+				@return (strip-unit($base) / strip-unit(base-font-size('%')) * strip-unit(base-font-size(px))) * 1px;
+			}
+			@if $unit == '%' {
+				@return $base;
+			}
+			@if $unit == unitless {
+				@return strip-unit($base) / strip-unit(base-font-size('%'));
+			}
+		}
+	}
+	@error "Base line-height has to be a number.";
+}
+@function base($value: font-size, $unit: rem) {
+	@if $value == font-size {
+		@return base-font-size($unit);
+	}
+	@if $value == line-height {
+		@return base-line-height($unit);
+	}
+}
+

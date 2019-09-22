@@ -1,0 +1,3 @@
+@function remove-last($list) {
+	@return remove-nth($list, -1);
+}

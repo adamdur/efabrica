@@ -1,0 +1,9 @@
+@import './core/core';
+@import './components/components';
+
+body {
+	font-family: $font-lato;
+	font-size: 1rem;
+	font-weight: normal;
+	background-color: color(grey-bg);
+}

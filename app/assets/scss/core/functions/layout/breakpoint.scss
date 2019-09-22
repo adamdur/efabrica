@@ -1,0 +1,41 @@
+/*
+ * Returns breakpoint in em
+ *
+ * 1. Get breakpoint from variables.
+ *    1.1 Breakpoint value can point to another breakpoint variabe, so
+ *        check the variables one more time.
+ * 2. Return single value in em.
+ * 3. Return two values in em.
+ *    3.1 Second value is lowered by 1px so the styles will not interfere
+ *         with the styles of the next breakpoint.
+ */
+@function breakpoint($breakpoint) {
+	// @if get(breakpoint $value) {
+	//   $value: get(breakpoint $value); /* 1 */
+	//   @if get(breakpoint $value) {
+	//     $value: get(breakpoint $value); /* 1.1 */
+	//   }
+	// }
+	@if is($breakpoint, length, 1) {
+		$value: get(breakpoint $breakpoint);
+		// @warn $value;
+		@if is($value, number) {
+			@if $value > 0 {
+				@return em($value, 16px); /* 2 */
+			}
+			@return 0;
+		}
+		@warn $value;
+		@return $value;
+	}
+	@if is($breakpoint, length, 2) {
+		$value: $breakpoint;
+		$from: 0;
+		@if first($value) {
+			$from: em(get(breakpoint first($value)), 16px);
+		}
+		$to: em(get(breakpoint last($value)), 16px) - 0.0625; /* 3.1 */
+		@return $from $to; /* 3 */
+	}
+	@error "Invalid value '#{$breakpoint}'";
+}

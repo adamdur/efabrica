@@ -1,0 +1,7 @@
+@function is-empty($value) {
+    @return
+        ($value == null) or
+        ($value == '') or
+        ($value == 0) or
+        (length($value) == 0);
+}

@@ -1,0 +1,6 @@
+/*
+ * Get last value from the list
+ */
+@function last($list) {
+	@return nth($list, length($list));
+}

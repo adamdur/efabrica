@@ -1,0 +1,11 @@
+@function remove-item($list, $item, $recursive: false) {
+    $result: ();
+    @for $i from 1 through length($list) {
+        @if type-of(nth($list, $i)) == list and $recursive {
+            $result: append($result, remove(nth($list, $i), $item, $recursive));
+        } @else if nth($list, $i) != $item {
+            $result: append($result, nth($list, $i));
+        }
+    }
+    @return $result;
+}

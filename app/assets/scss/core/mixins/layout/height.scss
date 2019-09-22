@@ -1,0 +1,11 @@
+@mixin height($height, $important: null) {
+    @if is-unitless($height) {
+        $height: r($height);
+    }
+    @if is-px($height) and $height >= get(px-to-rem-limit) {
+        $height: rem($height);
+    }
+    @if not is-_($height) {
+        height: $height $important;
+    }
+}

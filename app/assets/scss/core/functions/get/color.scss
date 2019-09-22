@@ -1,0 +1,39 @@
+@function color($value) {
+    $color: first($value);
+    $opacity: 1;
+    @if is-list($value) {
+        $opacity: last($value);
+    }
+    @if get(color $color) {
+        $color: get(color $color);
+    }
+    @if is-list($color) {
+        $opacity: last($color);
+        $color: first($color);
+    }
+    @if type-of($color) != color {
+        @if is-list($color) {
+            $opacity: last($color);
+            $color: first($color);
+        }
+        @if type-of($color) == number {
+            $color: hsl(0, 0, $color);
+        }
+    }
+    @if is-color($color) and is-number($opacity) {
+        @if $opacity < 0 or $opacity > 1 {
+            @error 'Invalid opacity value';
+        }
+        $color: transparentize($color, (1 - $opacity));
+    }
+    @if 
+        type-of($color) == color or
+        $color == auto or
+        $color == currentColor or 
+        $color == initial or 
+        $color == inherit
+    {
+        @return $color;
+    }
+    @return false;
+}

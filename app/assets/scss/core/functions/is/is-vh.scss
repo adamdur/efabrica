@@ -1,0 +1,3 @@
+@function is-vh($value) {
+    @return is-number($value) and unit($value) == vh;
+}

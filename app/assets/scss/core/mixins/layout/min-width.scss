@@ -1,0 +1,11 @@
+@mixin min-width($width, $important: null) {
+    @if is-unitless($width) {
+        $width: r($width);
+    }
+    @if is-px($width) and $width >= get(px-to-rem-limit) {
+        $width: rem($width);
+    }
+    @if not is-_($width) {
+        min-width: $width $important;
+    }
+}

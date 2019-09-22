@@ -1,0 +1,38 @@
+<div class="content-box">
+	<h3 class="content-box-title">
+		Edit employee "{$item->first_name} {$item->last_name}"
+	</h3>
+	<div class="form-wrapper">
+		<div n:foreach="$flashes as $flash" n:class="flash-message, $flash->type">
+			{$flash->message}
+		</div>
+		{form editForm class=>"form"}
+			<div class="errors" n:if="$form->errors">
+				<div class="error" n:foreach="$form->errors as $error">{$error}</div>
+			</div>
+			<div class="field-wrapper">
+				{label first_name /}
+				{input first_name class=>"control"}
+			</div>
+			<div class="field-wrapper">
+				{label last_name /}
+				{input last_name class=>"control"}
+			</div>
+			<div class="field-wrapper">
+				{label sex /}
+				{input sex class=>"control"}
+			</div>
+			<div class="field-wrapper">
+				{label age /}
+				{input age class=>"control"}
+			</div>
+			<div class="form-buttons">
+				{input save class=>"btn main-action"}
+				&nbsp;or&nbsp;
+				<a href="{plink default}"
+				   class="btn secondary-action">
+					Back
+				</a>
+			</div>
+		{/form}
+	</div>

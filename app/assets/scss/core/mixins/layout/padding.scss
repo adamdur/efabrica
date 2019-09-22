@@ -1,0 +1,3 @@
+@mixin padding($value: 0, $important: null) {
+    @include spacing(padding, $value, $important);
+}

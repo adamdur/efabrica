@@ -1,0 +1,63 @@
+<div class="content-box">
+	<h3 class="content-box-title">
+		All employees listing
+	</h3>
+	<div n:foreach="$flashes as $flash" n:class="flash-message, $flash->type">
+		{$flash->message}
+	</div>
+	<div class="table-wrapper">
+		<div class="table-actions">
+			<div class="left">
+				<a href="{plink create}" class="btn create">Create new</a>
+			</div>
+			<div class="right">
+				<a href="{plink import}" class="btn import">Import XML</a>
+				&nbsp;/&nbsp;
+				<a href="{link exportXML!}" class="btn export">Export XML</a>
+			</div>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					{foreach $columns as $key=>$column}
+						<th class="thead-column {$key}">
+							{$column}
+						</th>
+					{/foreach}
+					<th class="thead-column actions">
+						Actions
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+			{foreach $rows as $row}
+				<tr>
+					{foreach $columns as $key=>$column}
+						<td class="tbody-column {$key}">
+							{if $key == 'id'}
+								<a href="{plink detail, $row->$key}">
+									{$row->$key}
+								</a>
+							{else}
+								{$row->$key}
+							{/if}
+						</td>
+					{/foreach}
+					<td class="tbody-column actions">
+						<a href="{plink detail, $row->id}">Edit</a>
+						<a href="{plink delete, $row->id}">Delete</a>
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="{($columns|length) + 1}"
+						class="tfoot-column pagination">
+						{include '../base/_pagination.latte'}
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

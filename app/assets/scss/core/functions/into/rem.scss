@@ -1,0 +1,24 @@
+@function rem($size, $base: base(font-size)) {
+	@if 0 == $size {
+		@return 0;
+	}
+	@if is($size, number) {
+		@if is($size, unitless) {
+			@return $size * 1rem;
+		}
+		@if is($size, rem) {
+			@return $size;
+		}
+		@if is($size, px) {
+			@return $size / base(font-size, px) * 1rem;
+		}
+		@if is($size, em) {
+			@return strip-unit($size) * $base;
+		}
+		@if is($size, '%') {
+			@return $size / 100 * $base;
+		}
+		@error "Invalid unit of value '#{$size}'";
+	}
+	@error "Invalid value '#{$size}'";
+}

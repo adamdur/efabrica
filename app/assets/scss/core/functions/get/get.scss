@@ -1,0 +1,20 @@
+@function get-value($value, $source) {
+	@if type-of($value) != map {
+		@if length($value) == 1 {
+			@return map-get($source, $value);
+		}
+		@if type-of(first($value)) == string {
+			@return map-fetch($source, $value);
+		}
+		@return map-fetch(first($value), slice($value, 2, length($value)));
+	}
+	@return false;
+}
+@function get($value, $source: $variables) {
+	$result: false;
+	@while get-value($value, $source) {
+		$result: get-value($value, $source);
+		$value: $result;
+	}
+	@return $result;
+}

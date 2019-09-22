@@ -1,0 +1,100 @@
+.table-wrapper {
+	border: 1px solid color(border);
+	border-radius: rem(6px);
+	border-spacing: 0;
+	.table-actions {
+		@include padding(15px 15px);
+		border-bottom: 1px solid color(border);
+		display: grid;
+		grid-template-columns: max-content auto;
+		.left {
+			align-self: center;
+			text-align: left;
+		}
+		.right {
+			align-self: center;
+			text-align: right;
+		}
+		.btn {
+			font-size: 14px;
+			padding: 0;
+			cursor: pointer;
+			&.create {
+				@include padding(10px 15px);
+				background-color: color(primary);
+				border-radius: 4px;
+				color: color(white);
+				display: block;
+				text-transform: uppercase;
+				font-weight: bold;
+			}
+			&.import,
+			&.export {
+				font-weight: bold;
+				color: color(secondary-blue .9);
+				text-decoration: underline;
+			}
+		}
+	}
+	.table {
+		@include size(100% _);
+		thead {
+			box-shadow: 0 10px 15px -10px rgba(0,0,0,.16);
+			tr {
+				.thead-column {
+					@include padding(15px 15px);
+					color: color(grey-text);
+					font-size: rem(14px);
+					text-align: left;
+					text-transform: uppercase;
+					&.actions {
+						text-align: right;
+					}
+				}
+			}
+		}
+		tbody {
+			tr {
+				.tbody-column {
+					@include padding(10px 15px);
+					border-bottom: 1px solid color(border);
+					text-align: left;
+
+					&.actions {
+						text-align: right;
+					}
+
+					a {
+						color: color(secondary-blue .9);
+						text-decoration: underline;
+						transition: color $speed-default $easing;
+						&:hover,
+						&:focus {
+							color: color(secondary-blue .8);
+						}
+					}
+				}
+			}
+		}
+		tfoot {
+			tr {
+				.tfoot-column {
+					&.pagination {
+						@include padding(15px 15px);
+						font-size: 14px;
+						text-align: right;
+						a {
+							font-size: 20px;
+							color: color(secondary-blue .9);
+							transition: color $speed-default $easing;
+							&:hover,
+							&:focus {
+								color: color(secondary-blue .8);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

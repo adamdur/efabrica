@@ -1,0 +1,38 @@
+.sidebar {
+	@include padding(40px 15px _);
+	background-color: white;
+	width: 200px;
+	height: calc(100vh - 60px);
+	position: fixed;
+	top: 60px;
+	left: 0;
+	overflow-y: auto;
+	z-index: 100;
+	border-right: 1px solid color(border);
+	box-shadow: 5px 0 15px 0 color(black .16);
+
+	.section-heading {
+		@include margin(0px _ 10px);
+		color: color(secondary-blue);
+		font-size: rem(14px);
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	.menu {
+		@include margin(_ _ 30px);
+		.menu-items {
+			@include padding(_ _ _ 15px);
+			.item {
+				@include margin(_ _ 5px);
+				display: inline-block;
+				a {
+					color: color(grey-text);
+					font-size: rem(14px);
+					font-weight: bold;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,12 @@
+/*
+ * Strip out unit from a number
+ */
+@function strip-unit($value) {
+	@if type-of($value) == number {
+		@if unitless($value) {
+			@return $value;
+		}
+		@return $value / ($value * 0 + 1);
+	}
+	@error "Invalid value '#{$value}'";
+}

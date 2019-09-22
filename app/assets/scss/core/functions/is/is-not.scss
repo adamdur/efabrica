@@ -1,0 +1,3 @@
+@function is-not($value, $unit, $length: null) {
+    @return not is($value, $unit, $length);
+}

@@ -1,0 +1,6 @@
+/*
+ * Converts input value to a list.
+ */
+@function list($value) {
+    @return if(type-of($value) != list, ($value,), $value);
+}

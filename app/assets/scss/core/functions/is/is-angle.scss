@@ -1,0 +1,3 @@
+@function is-angle($value) {
+	@return is-number($value) and index('deg' 'rad' 'grad' 'turn', unit($value)) != null;
+}

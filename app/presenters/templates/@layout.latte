@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="{include page_class}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap&subset=latin-ext" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{$basePath}/dist/css/style.min.css">
+
+	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
+</head>
+<body>
+	<div class="grid-container">
+		{include '_header.latte'}
+		{include '_sidebar.latte'}
+		<main class="content-wrapper">
+			<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+			{include content}
+		</main>
+	</div>
+	{block scripts}
+	<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+	{/block}
+	{include page_scripts}
+</body>
+</html>

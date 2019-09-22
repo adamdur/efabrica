@@ -1,0 +1,4 @@
+@mixin min-size($value, $important: null) {
+    @include min-width(first($value), $important);
+    @include min-height(last($value), $important);
+}

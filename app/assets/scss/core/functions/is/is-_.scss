@@ -1,0 +1,6 @@
+@function is-_($value) {
+    @if $value == _ or $value == n {
+        @return true;
+    }
+    @return false;
+}

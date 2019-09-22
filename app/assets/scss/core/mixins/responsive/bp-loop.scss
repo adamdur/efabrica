@@ -1,0 +1,11 @@
+@mixin bp-loop($value) {
+    @each $breakpoint in map-keys($value) {
+        @if $breakpoint == 0 {
+            @content;
+        } @else {
+            @include bp($breakpoint) {
+                @content;
+            }
+        }
+    }
+}

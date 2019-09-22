@@ -1,0 +1,16 @@
+main.content-wrapper {
+	@include padding(40px 40px);
+	.content-box {
+		@include padding(20px 20px);
+		background-color: color(white);
+		border: 1px solid color(border);
+		border-radius: rem(8px);
+		box-shadow: 5px 0 15px 0 color(black .16);
+		&-title {
+			@include margin(_ _ 20px);
+			font-weight: bold;
+			text-transform: uppercase;
+			color: color(secondary-blue);
+		}
+	}
+}

@@ -1,0 +1,51 @@
+@function is($value, $unit, $length: null) {
+    @if $unit == '%' {
+        @return is-percentage($value);
+    } @else if $unit == absolute-length {
+        @return is-absolute-length($value);
+    } @else if $unit == angle {
+        @return is-angle($value);
+    } @else if $unit == color {
+        @return is-color($value);
+    } @else if $unit == em {
+        @return is-em($value);
+    } @else if $unit == empty {
+        @return is-empty($value);
+    } @else if $unit == frequency {
+        @return is-frequency($value);
+    } @else if $unit == integer {
+        @return is-integer($value);
+    } @else if $unit == length {
+        @return is-length($value, $length);
+    } @else if $unit == list {
+        @return is-list($value);
+    } @else if $unit == map {
+        @return is-map($value);
+    } @else if $unit == _ {
+        @return is-_($value);
+    } @else if $unit == number {
+        @return is-number($value);
+    } @else if $unit == px {
+        @return is-px($value);
+    } @else if $unit == relative-length {
+        @return is-relative-length($value);
+    } @else if $unit == rem {
+        @return is-rem($value);
+    } @else if $unit == resolution {
+        @return is-resolution($value);
+    } @else if $unit == separator {
+        @return is-separator($value, $length);
+    } @else if $unit == string {
+        @return is-string($value);
+    } @else if $unit == time {
+        @return is-time($value);
+    } @else if $unit == unitless {
+        @return is-unitless($value);
+    } @else if $unit == vh {
+        @return is-vh($value);
+    } @else if $unit == vw {
+        @return is-vw($value);
+    } @else {
+        @return $unit == $value;
+    }
+}

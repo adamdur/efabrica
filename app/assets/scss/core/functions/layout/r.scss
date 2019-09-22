@@ -1,0 +1,6 @@
+/*
+ * Shorthand for rhythm() function
+ */
+@function r($value) {
+    @return rhythm($value);
+}

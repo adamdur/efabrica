@@ -1,0 +1,15 @@
+.grid-container {
+	display: grid;
+	grid-template-columns: 200px 1fr;
+	grid-template-rows: 60px 1fr;
+	grid-template-areas: "header header" "sidebar content";
+	.sidebar {
+		grid-area: sidebar;
+	}
+	.header {
+		grid-area: header;
+	}
+	.content-wrapper {
+		grid-area: content;
+	}
+}

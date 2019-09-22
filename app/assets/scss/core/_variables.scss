@@ -1,0 +1,84 @@
+$variables: (
+	base: (
+		font-size: 16px,
+		line-height: 24px,
+	),
+	breakpoint: (
+		0: 0,
+		3: 360px,
+		4: 480px,
+		5: 512px,
+		6: 640px,
+		7: 768px,
+		8: 800px,
+		9: 960px,
+		10: 1024px,
+		11: 1152px,
+		12: 1280px,
+		13: 1366px,
+		14: 1440px,
+		15: 1536px,
+		16: 1600px,
+		17: 1700px,
+		18: 1800px,
+		19: 1920px,
+		l: landscape,
+		p: portrait,
+		r: retina,
+	),
+	color: (
+		black: 0,
+		white: 100,
+		muted: 50,
+		debug: cyan .5,
+		text: color black,
+		// Messages
+		error: #F44336,
+		info: #2196F3,
+		success: #4CAF50,
+		warning: #FF9800,
+
+		primary: #3bc47d,
+		secondary-blue: #426cd1,
+		border: #f4f4f4,
+		grey-bg: #f5f7f9,
+		grey-text: #787878,
+
+		// Selection
+		//selection: (
+		//	background-color: color black,
+		//	color: auto,
+		//),
+		//// Social media
+		//disqus: #2e9fff,
+		//facebook: #3b5998,
+		//messenger: #0084ff,
+		//google: #d34836,
+		//twitter: #1da1f2,
+		//whatsapp: #25D366,
+		//// Theme vars
+		//primary: #40d1ce,
+		//primary-light: rgba(64, 209, 206, .2),
+		//secondary: #5db3b1,
+		//text-primary: #222745,
+		//text-secondary: #494f75,
+		//text-menu: #3c4371,
+		//text-label: #2b3260,
+		//text-muted: #b2b5ca,
+		//light-grey: #f3f3f3,
+		//orange: #ff8f4f,
+	),
+	px-to-rem-limit: 5,
+);
+
+$layout-limit: 1140px;
+
+$easing: cubic-bezier(0.77, 0, 0.175, 1);
+
+// animations
+$transition-default: all 320ms ease-in-out;
+$transition-fast: all 120ms ease-in-out;
+$speed-default: 320ms;
+$easing-default: ease-in-out;
+
+$font-lato: 'Lato', sans-serif;
